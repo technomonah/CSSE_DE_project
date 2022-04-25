@@ -63,3 +63,7 @@ nano .bashrc
 source .bashrc
 ```
 
+### Deploy
+1. Create cloud infrasctructure via Terraform. Look at instructions here: https://github.com/technomonah/CSSE_data_de/tree/main/terraform
+2. Run Airflow in docker and trigger DAGs. Look at instructions here: https://github.com/technomonah/CSSE_data_de/tree/main/airflow
+
