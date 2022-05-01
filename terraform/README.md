@@ -29,7 +29,7 @@ variable "region" {
 export GOOGLE_APPLICATION_CREDENTIALS=~/.google/credentials/google_credentials.json
 gcloud auth activate-service-account --key-file $GOOGLE_APPLICATION_CREDENTIALS
 ```
-4. Initialize terraform state, check changes to infra plan and apply them
+3. Initialize terraform state, check changes to infra plan and apply them
 ```bash
 terraform init
 terraform plan
