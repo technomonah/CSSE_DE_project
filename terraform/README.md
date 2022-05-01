@@ -8,8 +8,10 @@ We'll create a cloud infra wich consists of data lake and BQ dataset.
 #### How to run
 1. Copy all files from repo and change **variables.tf** up to your GCP Project ID: 
 
-variables.tf
+
 ```
+**variables.tf**
+
 variable "project" {
   description = "Your GCP Project ID"
   default = "iron-figure-338711" # Here should be your GCP Project ID
