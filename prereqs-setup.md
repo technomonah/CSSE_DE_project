@@ -51,5 +51,5 @@ rm https://releases.hashicorp.com/terraform/1.1.9/terraform_1.1.9_linux_amd64.zi
 3. Create dir to store GCP credentials (would be used for running terraform and airflow)
 ```bash
 cd ~ && mkdir -p ~/.google/credentials/
-mv <path/to/your/service-account-authkeys>.json ~/.google/credentials/google_credentials.json
+mv <path/to/your/service-account-authkeys>.json ~/.google/credentials/google_credentials.json 
 ```
