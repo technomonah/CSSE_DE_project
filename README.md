@@ -34,7 +34,7 @@ Dashboard for project: https://datastudio.google.com/reporting/9bfe705c-bc0f-4b0
 ## How to run project? 
 
 ### Prereqs
-i've builded project on GCP Ubuntu VM, so snippets would be only for these particular case.
+I've builded project on GCP Ubuntu VM, so snippets would be only for these particular case.
 
 - ***Anaconda***
 ```bash 
