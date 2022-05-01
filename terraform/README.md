@@ -2,7 +2,7 @@
 
 We'll create a cloud infra wich consists of data lake and BQ dataset. 
 
-- Data Lake would be user for storing all data: raw and clean
+- Data Lake would be used for storing all data: raw and clean
 - BQ dataset would store tables for reports
 
 #### How to run
