@@ -1,2 +1,20 @@
 ### Creating cloud infra via Terraform
-Copy all files from dir and change **variables.tf** up to your GCP Project ID
+
+We'll create a cloud infra wich consists of data lake and BQ dataset. 
+
+- Data Lake would be user for storing all data: raw and clean
+- BQ dataset would store tables for reports
+
+#### How to run
+1. Copy all files from repo and change **variables.tf** up to your GCP Project ID: 
+```
+variable "project" {
+  description = "Your GCP Project ID"
+}
+
+variable "region" {
+  description = "Region for GCP resources. Choose as per your location: https://cloud.google.com/about/locations"
+  default = "europe-west6"
+  type = string
+}
+```
