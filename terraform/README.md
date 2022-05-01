@@ -7,14 +7,23 @@ We'll create a cloud infra wich consists of data lake and BQ dataset.
 
 #### How to run
 1. Copy all files from repo and change **variables.tf** up to your GCP Project ID: 
+
+variables.tf
 ```
 variable "project" {
   description = "Your GCP Project ID"
+  default = "iron-figure-338711" # Here should be your GCP Project ID
+  type = string
 }
 
 variable "region" {
   description = "Region for GCP resources. Choose as per your location: https://cloud.google.com/about/locations"
-  default = "europe-west6"
+  default = "europe-west6" # Here should be your GCP Project Region
   type = string
 }
 ```
+2. Initialize terraform state
+```bash
+terraform init
+```
+3. 
