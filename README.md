@@ -2,6 +2,7 @@
 It's a learning project at data-engineering-zoomcamp course by [DataTalksClub](https://github.com/DataTalksClub/data-engineering-zoomcamp)
 
 Here I've tried to build batch pipeline with to process COVID data from data repository by the Center for Systems Science and Engineering (CSSE) at Johns Hopkins University. The goal was to build a dasboard for monitoring confirmed COVID cases in the world, where user can choose city and look at current incidence rate.
+
 Something like a weather checker, useful not to decide on pick up a umbrella, but put on a mask or stay at home.
 
 ### Dataset
@@ -31,36 +32,11 @@ Dashboard for project: https://datastudio.google.com/reporting/9bfe705c-bc0f-4b0
 ## How to run project? 
 
 ### Prereqs
-I've builded project on GCP Ubuntu VM, so code snippets would be only for these particular case.
-
 - ***Anaconda***
-```bash 
-wget https://repo.anaconda.com/archive/Anaconda3-2021.11-Linux-x86_64.sh #Check for newer release
-bash Anaconda3-2021.11-Linux-x86_64.sh #Press "yes" to everything
-source .bashrc #To run up Anaconda base
-```
 - ***Docker + Docker-compose***
-```bash
-sudo apt-get install docker.io # Start with Docker installation
-
-sudo groupadd docker
-sudo gpasswd -a $USER docker
-sudo service docker restart #Relogin after last command
-```
-```bash
-mkdir bin/ # To collect binaries (executable apps)
-cd bin
-wget https://github.com/docker/compose/releases/download/v2.2.3/docker-compose-linux-x86_64 -O docker-compose
-chmod +x docker-compose
-
-nano .bashrc
-
-# Add this stroke to the bottom of .bashrc and save it: $ export PATH="${HOME}/bin:${PATH}"
-
-source .bashrc
-```
+I've builded project on GCP Ubuntu VM, so you can find code snippets for these particular case [here](https://github.com/technomonah/CSSE_data_de/blob/main/prereqs-setup.md).
 
 ### Deploy
-1. Create cloud infrasctructure via Terraform. Look at instructions here: https://github.com/technomonah/CSSE_data_de/tree/main/terraform
-2. Run Airflow in docker and trigger DAGs. Look at instructions here: https://github.com/technomonah/CSSE_data_de/tree/main/airflow
+1. Create cloud infrasctructure via Terraform. Look at instructions at [terraform dir](https://github.com/technomonah/CSSE_data_de/tree/main/terraform)
+2. Run Airflow in docker and trigger DAGs. Look at instructions at [airflow dir](https://github.com/technomonah/CSSE_data_de/tree/main/airflow)
 
