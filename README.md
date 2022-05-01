@@ -2,7 +2,6 @@
 It's a learning project at data-engineering-zoomcamp course by DataTalksClub (https://github.com/DataTalksClub/data-engineering-zoomcamp)
 
 Here I've tried to build batch pipeline with to process COVID data from data repository by the Center for Systems Science and Engineering (CSSE) at Johns Hopkins University. The goal was to build a dasboard for monitoring confirmed COVID cases in the world, where user can choose city and look at current incidence rate.
-
 Something like a weather checker, useful not to decide on pick up a umbrella, but put on a mask or stay at home.
 
 ### Dataset
