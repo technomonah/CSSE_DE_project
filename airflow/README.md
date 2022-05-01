@@ -44,6 +44,6 @@ docker-compose up
 ```
 6. Now airflow running on 8080 port, so can forward it and open in browser at localhost:8080
 7. Trigger DAG with these sequence: 
-1. csse_archive_data_dag (wait for complete all dag runs)
-2. csse_actual_data_dag and csse_data_processing_dag
+  - csse_archive_data_dag (wait for complete all dag runs)
+  - csse_actual_data_dag and csse_data_processing_dag
 
