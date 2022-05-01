@@ -34,6 +34,8 @@ Dashboard for project: https://datastudio.google.com/reporting/9bfe705c-bc0f-4b0
 ### Prereqs
 - ***Anaconda***
 - ***Docker + Docker-compose***
+- ***GCP project***
+- ***Terraform***
 I've builded project on GCP Ubuntu VM, so you can find code snippets for these particular case [here](https://github.com/technomonah/CSSE_data_de/blob/main/prereqs-setup.md).
 
 ### Deploy
