@@ -24,8 +24,14 @@ variable "region" {
   type = string
 }
 ```
-2. Initialize terraform state
+2. Activate terraform service account on GCP
+```bash
+export GOOGLE_APPLICATION_CREDENTIALS=~/.google/credentials/google_credentials.json
+gcloud auth activate-service-account --key-file $GOOGLE_APPLICATION_CREDENTIALS
+```
+4. Initialize terraform state, check changes to infra plan and apply them
 ```bash
 terraform init
+terraform plan
+terraform apply
 ```
-3. 
