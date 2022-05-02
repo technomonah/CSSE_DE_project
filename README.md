@@ -24,10 +24,14 @@ Pipeline process all archive data from dataset and schedule daily updates:
 - Dataset have only cumulative sum of confirmed covid cases, so daily cases were calculated as difference between close date reports
 
 On the exit pipeline creates:
-- Two tables with precalculated data for visualization to reduce cost of using BigQuery
+- Two tables with precalculated data for visualization to reduce cost of using BigQuery:
+  - *monthly_cases_grouped* - table with cities coordinates and names, sum of cases occured for 3 last month
+  - *cases_last_3m* - number of new cases for each day by cities for 3 last month
 - One partitioned by date table with all data for query experiments
 
 Dashboard for project: https://datastudio.google.com/reporting/9bfe705c-bc0f-4b00-8211-e1cca72d1f0c/page/910qC
+(GCP revoke my payment method becouse of current situation and sanctions. 
+I'm from Russia, but soon would leave this country. No to war!) 
 
 ## How to run project? 
 
