@@ -1,4 +1,6 @@
-#### DAGs
+# Airflow DAGs
+
+Airflow will be runned in docker-compose network. Dockerfiles have everything to run Airflow with for needs. *dag* dir c 
 **csse_archive_data_dag.py** 
 These DAG running yearly from 2020 to current year. And contains tasks for downloading, preprocessing and uploadind to the cloud storage. 
 
