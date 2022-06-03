@@ -1,49 +1,65 @@
-## What this project about? 
-It's a learning project at data-engineering-zoomcamp course by [DataTalksClub](https://github.com/DataTalksClub/data-engineering-zoomcamp)
+# Project about 
+It's course project at data-engineering-zoomcamp by [DataTalksClub](https://github.com/DataTalksClub/data-engineering-zoomcamp).
 
-Here I've tried to build batch pipeline with to process COVID data from data repository by the Center for Systems Science and Engineering (CSSE) at Johns Hopkins University. The goal was to build a dasboard for monitoring confirmed COVID cases in the world, where user can choose city and look at current incidence rate.
+For this project I've tried to build a batch pipeline to process COVID data from git-repository by the Center for Systems Science and Engineering (CSSE) at Johns Hopkins University. The goal is to build a dasboard for monitoring confirmed COVID cases in the world, where user can choose city and look at current incidence rate, number of daily cases and so on.
 
-Something like a weather checker, useful not to decide on pick up a umbrella, but put on a mask or stay at home.
+Something like a weather checker useful not to decide on pick up an umbrella, but put on a mask or stay at home.
 
-### Dataset
+## Dataset
 [COVID-19 Data Repository by the Center for Systems Science and Engineering (CSSE) at Johns Hopkins University](https://github.com/CSSEGISandData/COVID-19/tree/master/csse_covid_19_data)
 
-### Technologies
-- **Google cloud platform** (GCP)
-  - VM Instance to run project on it
-  - Cloud Storage to store raw and processed data
-  - BigQuery to create tables which to use as data source for dashboard 
-- **Terraform** to create infrastricture for project on GCP
-- **Airflow** to run data pipelines 
-- **PySpark** to code transform data scripts
-- **Google data studio** to visualize data 
+## Technologies
+- **Google cloud platform** (GCP):
+  - VM Instance to run project on it.
+  - Cloud Storage to store raw and processed data.
+  - BigQuery as data source for dashboard.
+- **Terraform** to create cloud infrastructure.
+- **Airflow** to run data pipelines as DAGs.
+- **PySpark** to transform raw data.
+- **Google data studio** to visualize data.
 
-### Results 
-Pipeline process all archive data from dataset and schedule daily updates: 
-- All data was standartized (schema of dataset reports had multiple changes since 2020)
-- Dataset have only cumulative sum of confirmed covid cases, so daily cases were calculated as difference between close date reports
+# Results 
+## Cloud infrastructure
+Except the VM Instance, all project infra setups with terraform: 
+- Data Lake for all of the project data.
+- BigQuery for transformed data tablels as source for dashboard.
 
-On the exit pipeline creates:
-- Two tables with precalculated data for visualization to reduce cost of using BigQuery:
-  - *monthly_cases_grouped* - table with cities coordinates and names, sum of cases occured for 3 last month
-  - *cases_last_3m* - number of new cases for each day by cities for 3 last month
-- One partitioned by date table with all data for query experiments
+## Data pipelines
+The dataset data download, process and upload to cloud storage via Airflow DAGs:
+1. **Archive data DAG** 
+  - Runs once for the year since 2020 to the actual date — date, when the DAG was triggered. 
+  - Download all yearly dataset updates. This task runs by a bash script, which download and compress the data. 
+  - Normalize data with PySpark scripts, becouse the schema of the dataset updates have been changed several times since 2020. 
+  - Provide actual schema to data.
+  - Upload data to project Cloud Storage.
+  - Local clean up.
+2. **Actual data DAG**
+  - Runs daily from actual date. 
+  - Download yesterdays dataset update.
+  - Provide actual schema to data.
+  - Upload data to project Cloud Storage.
+  - Local clean up.
+3. **Data processing DAG** 
+  - Triggered by the ending of the archive data DAG.
+  - Runs daily from the actual date.
+  - With PySpark script read, transform and rewrite all data from project cloud storage via spark-gcs connector. 
+  - Create or replace tables at project BigQuery with partitioning where it's needed. 
 
-Dashboard for project: https://datastudio.google.com/reporting/9bfe705c-bc0f-4b00-8211-e1cca72d1f0c/page/910qC
-(GCP revoke my payment method becouse of current situation and sanctions. 
-I'm from Russia, but soon would leave this country. No to war!) 
+## Dashboard
+Simple dashboard at Google Data studio with few graphs.
+- Histogram of the daily confirmed COVID cases at the choosen city or province for last three month. 
+- Heat map of COVID cases
 
-## How to run project? 
+# How to run project? 
+Project was build on GCP Ubuntu VM Instance, so you can find code snippets for these particular case [here](https://github.com/technomonah/CSSE_data_de/blob/main/prereqs-setup.md).
 
-### Prereqs
+## Prereqs
 - Anaconda
 - Docker + Docker-compose
 - GCP project
 - Terraform
 
-I've builded project on GCP Ubuntu VM, so you can find code snippets for these particular case [here](https://github.com/technomonah/CSSE_data_de/blob/main/prereqs-setup.md).
-
-### Deploy
+## Setup & Deploy
 1. Create cloud infrasctructure via Terraform. Look at instructions at [terraform dir](https://github.com/technomonah/CSSE_data_de/tree/main/terraform)
 2. Run Airflow in docker and trigger DAGs. Look at instructions at [airflow dir](https://github.com/technomonah/CSSE_data_de/tree/main/airflow)
-
+3. Connect Google Data Studio dashboard to project BigQuery as a source
