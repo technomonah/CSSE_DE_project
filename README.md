@@ -48,7 +48,7 @@ The dataset data download, process and upload to cloud storage via Airflow DAGs:
 ## Dashboard
 Simple dashboard at Google Data studio with few graphs.
 - Histogram of the daily confirmed COVID cases at the choosen city or province for last three month. 
-- Heat map of COVID cases
+- Heat map of COVID cases.
 
 # How to run project? 
 Project was build on GCP Ubuntu VM Instance, so you can find code snippets for these particular case [here](https://github.com/technomonah/CSSE_data_de/blob/main/prereqs-setup.md).
@@ -60,6 +60,6 @@ Project was build on GCP Ubuntu VM Instance, so you can find code snippets for t
 - Terraform
 
 ## Setup & Deploy
-1. Create cloud infrasctructure via Terraform. Look at instructions at [terraform dir](https://github.com/technomonah/CSSE_data_de/tree/main/terraform)
-2. Run Airflow in docker and trigger DAGs. Look at instructions at [airflow dir](https://github.com/technomonah/CSSE_data_de/tree/main/airflow)
-3. Connect Google Data Studio dashboard to project BigQuery as a source
+1. Create cloud infrasctructure via Terraform. Look at instructions at [terraform dir](https://github.com/technomonah/CSSE_data_de/tree/main/terraform).
+2. Run Airflow in docker and trigger DAGs. Look at instructions at [airflow dir](https://github.com/technomonah/CSSE_data_de/tree/main/airflow).
+3. Connect Google Data Studio dashboard to project BigQuery as a source.
