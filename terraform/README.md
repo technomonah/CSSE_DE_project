@@ -1,13 +1,11 @@
-### Creating cloud infra via Terraform
+# Creating cloud infra via Terraform
 
-We'll create a cloud infra wich consists of data lake and BQ dataset. 
-
+Cloud infra wich consists of data lake and BQ dataset: 
 - Data Lake would be used for storing all data: raw and clean
 - BQ dataset would store tables for reports
 
-#### How to run
+## How to run
 1. Copy all files from repo and change **variables.tf** up to your GCP Project ID: 
-
 
 ```
 **variables.tf**
