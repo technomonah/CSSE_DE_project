@@ -5,7 +5,7 @@ Cloud infra wich consists of data lake and BQ dataset:
 - BQ dataset would store tables for reports
 
 ## How to run
-1. Copy all files from repo and change **variables.tf** up to your GCP Project ID: 
+1. Copy all files from repo and change **variables.tf** up to your GCP Project ID. Here **variables.tf** code snippet with comments at strokes to change: 
 
 ```
 **variables.tf**
@@ -22,12 +22,12 @@ variable "region" {
   type = string
 }
 ```
-2. Activate terraform service account on GCP
+2. Activate terraform service account on GCP. Use those commands:
 ```bash
 export GOOGLE_APPLICATION_CREDENTIALS=~/.google/credentials/google_credentials.json
 gcloud auth activate-service-account --key-file $GOOGLE_APPLICATION_CREDENTIALS
 ```
-3. Initialize terraform state, check changes to infra plan and apply them
+3. Initialize terraform state, check changes to infra plan and apply them. Use commands at terradorm dir: 
 ```bash
 terraform init
 terraform plan
