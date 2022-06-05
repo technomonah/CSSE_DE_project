@@ -1,6 +1,12 @@
 # Airflow DAGs
 
-Airflow will be runned in docker-compose network. Dockerfiles have everything to run Airflow with for needs. *dag* dir contains code for DAGs and needed scripts: 
+Airflow will be runned in docker-compose network. 
+
+`Dockerfile`, `docker-compose.yaml` and `requirements.txt` have everything and project spec to run Airflow in Docker containers. 
+
+`.env` text file with GCP and Airflow creds. Should be updated with user's GCP credentials before building images for Docker.
+
+**dag** dir contains code for DAGs and needed scripts: 
 - **csse_archive_data_dag.py**. Runs 5 tasks yearly from 2020 to actual date. 
   - **download_dataset_task**. Downloads dataset files for year and compress them to `.gzip` via bash script `archive_datawget.sh`. 
   - **normalize_data_task**. Reads and transform downloaded data via PySpark script `pyspark_archive_data_transform.py`.
