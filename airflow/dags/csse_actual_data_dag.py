@@ -20,6 +20,7 @@ path_to_local_home = os.environ.get("AIRFLOW_HOME", "/opt/airflow/")
 current_year = "{{ execution_date.strftime(\'%Y\') }}"
 dataset_date = datetime.today() - timedelta(days=1)
 
+# Function for uploading data to GCP Data Lake from local storage
 # NOTE: takes 20 mins, at an upload speed of 800kbps. Faster if your internet has a better upload speed
 def upload_to_gcs(bucket, year):
     """
@@ -54,7 +55,6 @@ default_args = {
     "depends_on_past": True,
 }
 
-# NOTE: DAG declaration - using a Context Manager (an implicit way)
 with DAG(
     dag_id="csse_actual_data",
     schedule_interval="@daily",
@@ -64,13 +64,15 @@ with DAG(
     max_active_runs=2,
     tags=['CSSE-data'],
 ) as dag:
-
+    
+    # Used bash command to download yesterday dataset update (last)
     download_dataset_task = BashOperator(
         task_id="download_dataset_task",
         bash_command=f"mkdir -pv {path_to_local_home}/data/raw/{current_year} \
         && wget {dataset_url} -qP {path_to_local_home}/data/raw/{current_year}"
     )
-
+    
+    # Runs PySpark script functions to normalize dataset update
     normalize_data_task = PythonOperator(
         task_id="normalize_data_task",
         python_callable=archive_data_standartize,
@@ -79,7 +81,8 @@ with DAG(
             "year":f"{current_year}",
         },
     )
-
+    
+    # Apply schema on dataset update via PySpark script function
     reschema_data_task = PythonOperator(
         task_id="reschema_data_task",
         python_callable=archive_data_reschema,
@@ -89,6 +92,7 @@ with DAG(
         },
     )
 
+    # Used predefined function and uploads dataset upadate to project Data Lake
     local_to_gcs_task = PythonOperator(
         task_id="local_to_gcs_task",
         python_callable=upload_to_gcs,
@@ -97,7 +101,8 @@ with DAG(
             "year":f"{current_year}",
         },
     ) 
-
+    
+    # Remove dataset update from local storage
     clean_up_task = BashOperator(
         task_id="clean_up_raw_task",
         bash_command=f"rm -r {path_to_local_home}/data/raw/{current_year} \
